@@ -5,11 +5,12 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class UnitBuilder : MonoBehaviour {
-	public int startingClanCount = 10;
+	public static int startingClanCount = 10;
 	public static string[] names = {"Acornsquash","Adobo","Airfreshener","Ale","Allspice","Almondbutter","Amaretto","Applesauce","Appletree","Apricot","Aquavit","Artichoke","Arugula","Asparagus","Avocado","Bag","Bagel","Baguette","Bakingsoda","Ball","Balloon","Balsamic","Banana","Barbecue","Barley","Basil","Bathmat","Bathtub","Bayleaf","Bed","Beet","Belt","Bike","Blackberry","Blackolive","Blanket","Blender","Blind","Blouse","Blueberry","Boat","Bokchoy","Book","Bookmark","Boombox","Bottle","Bottlecap","Bouillon","Bourbon","Bow","Bowl","Box","Bracelet","Brandy","Bread","Breadcrumb","Breadfruit","Broccoliraab","Brocolli","Bruschetta","Brush","Brusselssprout","Bucket","Buckwheat","Bus","Button","Cabbage","Cactus","Calendar","Camera","Candle","Candywrapper","Canolaoil","Cantaloupe","Canvas","Cape","Car","Cardboard","Carpet","Carrot","Case","Cat","Cauliflower","Ceiling","Celery","Cellphone","Cerealbowl","Chai","Chainlinkfence","Chair","Chalk","Chambord","Champagne","Chapterbook","Chard","Charger","Checkbook","Cherry","Chestnut","Chickpea","Chicory","Chilisauce","Chipotle","Chive","Chocolate","Chutney","Cider","Ciggarette","Cilantro","Cinderblock","Cinnamon","Clamp","Claypot","Clock","Clothing","Cloud","Clove","Coaster","Coathanger","Coconutoil","Coffee","Comb","Compactdisc","Computer","Conditioner","Controller","Cookie","Cookiejar","Coriander","Cork","Corncob","Cornstarch","Cornsyrup","Cotton","Couch","Couscous","Cranberry","Crayon","Creamoftartar","Creditcard","Crochethook","Crouton","Cucumber","Cumin","Cup","Currypaste","Date","Deck","Dentalfloss","Deodorant","Desk","Dill","Dinnerplate","Disc","Doghouse","Doll","Door","Doorframe","Drawer","Dress","Drillpress","Drum","Dumpling","Duster","Eggplant","Envelope","Eraser","Eyeglasses","Eyeliner","Facewash","Fan","Fennel","Fig","Flag","Floor","Flour","Flower","Folder","Food","Fork","Fountain","Fridge","Gardenhose","Garlic","Gasoline","Ginger","Gingerale","Glass","Glasses","Glowstick","Gojiberry","Grahamcracker","Granola","Grape","Greetingcard","Gridpaper","Grits","Guava","Guitar","Gum","Hairbrush","Hairnet","Hairtie","Hanger","Hashbrown","Hat","Hazelnut","Headphone","Hearth","Helmet","Honeydew","Horseradish","House","Huckleberry","Ice","Icecubetray","Induction","Jar","Jellybean","Jewelry","Jicama","Kale","Ketchup","Key","Keyboard","Keychain","Kiwi","Knife","Kumquat","Lace","Ladder","Lager","Lamp","Lampshade","Laundry","Leaf","Leeks","Legwarmer","Lemon","Lemongrass","Lemonjuice","Lemonpeel","Lentil","Letter","Lettuce","Light","Lightbulb","Lighter","Lime","Linen","Lipgloss","Lock","Lollypop","Lotion","Magnet","Mailbox","Mantle","Maplesyrup","Marble","Margarine","Marmalade","Mesclungreen","Mint","Mirror","Mobilephone","Modelcar","Molasses","Money","Monitor","Mop","Mousepad","Mushroom","Mustard","Mustardseed","Nailclipper","Nailfile","Necklace","Nectarine","Needle","Newspaper","Notebook","Notepad","Oatmeal","Okra","Oliveoil","Onion","Orange","Oregano","Outlet","Oven","Packingpeanut","Paintbrush","Painting","Pan","Pants","Papaya","Paper","Paperclip","Paprika","Parsley","Parsnip","Passionfruit","Pasta","Patio","Peach","Peanut","Peanutbutter","Pear","Pecan","Pen","Pencil","Pepper","Perfume","Pesto","Phenylalanine","Phone","Photoalbum","Piano","Pickle","Picodegallo","Picture","Pictureframe","Pillow","Pin","Pineapple","Pintobean","Pistachio","Plane","Plantain","Plaque","Plasticbag","Plasticfork","Plasticware","Plate","Playingcard","Plum","Pneumonia","Pomegranate","Pool","Poolstick","Poppyseed","Popsicle","Portabello","Potatochip","Pots","Printer","Prune","Puddle","Pumpkin","Purse","Radio","Radish","Railing","Raisin","Raspberry","Redcabbage","Refrigerator","Remote","Remotecontrol","Remoulade","Rhubarb","Rice","Ricepaper","Ricewine","Ring","Roadsign","Rock","Romaine","Rosemary","Rosewater","Rubberband","Rubberduck","Rug","Rum","Rustynail","Sage","Sailboat","Salsa","Salt","Sandal","Sandpaper","Saucer","Sauerkraut","Scissors","Scotchtape","Screw","Seatbelt","Shallot","Shampoo","Sharpie","Shawl","Shelf","Sherry","Shirt","Shoe","Shoelace","Shovel","Showercurtain","Sidewalk","Silverware","Sketchpad","Slipper","Soap","Sock","Sodacan","Sofa","Sorbitol","Soybean","Soymilk","Soysauce","Speaker","Spearmint","Spinach","Sponge","Spoon","Spring","Squash","Stapler","Stereo","Stick","Stickynote","Stocking","Stopsign","Stove","Strawberry","Streetlight","String","Succotash","Sugar","Sundial","Sunflower","Sunglasses","Sunscreen","Sushi","Sweetpepper","Sweetpotato","Tabasco","Table","Tarragon","Tea","Telephone","Television","Thermometer","Thermostat","Thread","Thyme","Tile","Tireswing","Tissuebox","Titration","Toaster","Toenail","Toering","Tofu","Toilet","Tomato","Tonicwater","Toothbrush","Toothpaste","Toothpick","Tortilla","Towel","Train","Tree","Treehouse","Truck","Truffle","Turnip","Tweezers","Twister","Vacuum","Vanilla","Vase","Vermouth","Videogame","Vinegar","Wagon","Wallet","Wallpaper","Walnut","Wasabi","Washingmachine","Watch","Water","Waterbottle","Waterchestnut","Watermelon","Whitebean","Whiteout","Wildrice","Window","Windowframe","Wine","Wire","Wonton","Wristband","Yarn","Zest","Zinfandel","Zipper"};
+	// TODO: Procedural guild crests based on ID? That'd be AWESOME.
 	public static string[] clans = {"Acts of the Demonic","Affliction of the Right","Angelic Shadow","Angels of the Land","Anguish of Heroes","Anguish of Promises","Aqua Hawks","Aqua Wolves","Aquadeath","Arcane Sacrament","Army of the Corrupted","Army of the Shield","Aspiring Chaos","Atonement of the Serene","Attack of Disease","Avengers of the Vigorous","Bandits of the Heroic","Bannershapers","Battleblades","Bellowdawn","Blackhammers","Blessing of the Shadows","Blood of the Vulture","Blood Rage","Blue Assailant","Boon of the Mighty","Bouldercrawlers","Boulderguard","Brave Knights","Brightblades","Burningwell","Civilians of the Loyal","Civilians of the World","Companions of the Putrid","Concealed Executors","Contract of Desire","Contract of the Infernal","Corruption of the Sick","Crushers of the Joyous","Cry of the Stag","Cunninglaws","Curse of the Extinct","Cutlass Champions","Damnation of Faith","Dashing Rats","Defiant Ancients","Delicate Genesis","Demolition Vikings","Departed End","Desire of the Fearless","Dishonest Nightmare","Dishonest Veterans","Dispensable Supremacy","Doomlaws","Emerald Apocalypse","Enemies of the Sincere","Eternal Assault","Eternal Paradox","Ethereal Assassins","Fallencrawlers","Fallensmiths","Famous Gang","Fellight","Feltalons","Fight of the Crow","Fighters of the Deluded","Fighters of the Sacred","Firetips","Flames of the Obscene","Forgesong","Forsaken Supremacy","Forsakenmanes","Funny Vultures","Furious Predators","Golden Intent","Goldendeath","Grace of the Universe","Gray Oath","Grieve of the Talon","Grim Gunslingers","Grim Illusions","Guards of the Jaguar","Hallowbeards","Hammers of Loyalty","Harmonious Plague","Harvesters of the Owl","Hell Rats","Hellcrushers","Hellflayers","Hellforce","Hellshields","Honest Death","Host of the Valiant","Humble Assassins","Humble Squad","Hummingswords","Hummingwell","Ill Hooligans","Ill Shadows","Immoral Vigorous","Independent Dynasty","Infernal Maggots","Ironcrawlers","Ivoryhammers","Jumpy Butchers","Large Vitality","Last of the Sacred","Legion of the Bear","Lightningbane","Magicbrawlers","Magicscars","Memories of Forests","Messengers of the Deserted","Metalfists","Misery of the Raven","Misery of the Sophisticated","Misery of the Woods","Monsters of the Seduced","Mystery of the Living","Mystical Punished","Nameless Warfare","Nefarious Assault","Nefarious Vengeance","Nightstriders","Oath of the Mysterious","Omega Ashes","Omega Vikings","Order of the Boar","Outlaws of the Dove","Pain of the Fallen","Passion of the Devoted","Patience of the Fierce","Peace of Fury","Perished Gunslingers","Poison Dragons","Poison Oath","Power Harvesters","Profane Punished","Punishment of Devotion","Punishment of the Cheeky","Pursuit of the Discarded","Rainshapers","Rangers of the Jungle","Ravendawn","Raventalons","Rebels of the Tame","Redguard","Refugees of the Ram","Relics of the Cougar","Retribution of the Crow","Revenant Primeval","Riddles of the Ended","Rise of the Talon","Roaring Enemy","Roaring Privilege","Robust Fall","Robust Shadow","Rogue Domination","Rumours of the Spider","Sacrifice of Shadows","Scouts of the Discarded","Screech of Darkness","Searing Harvesters","Sedated Supremacy","Shades of the Valiant","Shame of the Moon","Sightless Vanguards","Silence of the Boar","Society of Serenity","Society of the Hawk","Solarscars","Solarwell","Steelcrawlers","Stewards from the People","Stewards of the Lost Age","Stoneflags","Stonehammers","Storm of the Stars","Swiftflayers","Tasty Titans","Thundercrawlers","Tradition of Forests","Tremblestriders","Twin Eagles","Unknown Veterans","Valiant Rebels","Vanquished Gangsters","Vendetta from the Woods","Venom of Fury","Weak Vengeance","White Hawks","Whiteflags","Whitesong","Widows of the Strong","Wind Lust","Windcloaks","Workers of Virtue","Wraiths of the Vigorous","Wrecking Hawks","Wrong Veterans"};
 
-	// Create a role object rather than using a string. Abilities will go there.
+	// TODO: Create a role object rather than using a string. Abilities will go there.
 	public static List<string> roles = new List<string>() {"Valiant Palisade","Dawn Ritualist","Zephyr Minstrel","Ruin Bringer","Crescent Stalker"};
 
 	public static List<int> openIDs = new List<int>();
@@ -26,15 +27,18 @@ public class UnitBuilder : MonoBehaviour {
 	}
 
 	void Update(){
+		// TODO: Randomly add players to the mix.
 	}
 
-	static int popID(){
+	// TODO: What happens when we run out of IDs? Reset and remove active ones?
+	private static int popID(){
 		int ret = openIDs.ElementAt(openIDs.Count-1);
 		openIDs.RemoveAt(openIDs.Count-1);
 		return ret;
 	}
 
-	static int popClan(){
+	// TODO: What happens when we run out of Clans? Reset and remove active ones?
+	private static int popClan(){
 		int ret = openClans.ElementAt(openClans.Count-1);
 		openClans.RemoveAt(openClans.Count-1);
 		return ret;
@@ -52,7 +56,20 @@ public class UnitBuilder : MonoBehaviour {
 		openIDs.RemoveAt(i+1);
 		return new Dood(id, clan);
 	}
+
+	public static void createNewClan(Dood[] doods){
+		Clan newClan = new Clan(clans[popClan()], false);
+		//Debug.Log("New Clan: "+newClan.name+" has been founded!");
+		foreach (Dood dood in doods){
+			dood.swapClans (newClan);
+			dood.happy += 0.2f; // Even better than joining an existing guild!
+		}
+		newClan.recalcStats();
+		RelationsTracker.activeClans.Add(newClan);
+	}
 }
+
+// TODO: Visual debug representation of Clans/Doods via UI (nested tree?)
 
 public class Clan{
 	public string name;
@@ -61,29 +78,31 @@ public class Clan{
 	public int[] roleCount = new int[UnitBuilder.roles.Count];
 	public List<Dood> roster = new List<Dood>();
 	
-	public Clan(string name){
+	public Clan(string name, bool init = true){
 		this.name = name;
-		for(int i=0; i<5; i++){
-			Dood dood = UnitBuilder.getDoodByRole(i, this);
-			roster.Add(dood);
-			score+=dood.equipLevel;
-			roleCount[i]++;
+		if(init){
+			for(int i=0; i<5; i++){
+				Dood dood = UnitBuilder.getDoodByRole(i, this);
+				roster.Add(dood);
+				score+=dood.equipLevel;
+				roleCount[i]++;
+			}
+			for(int i=UnityEngine.Random.Range (2,4); i>0; i--){
+				Dood dood = UnitBuilder.getDoodByRandom(this);
+				roster.Add(dood);
+				score+=dood.equipLevel;
+				roleCount[UnitBuilder.roles.IndexOf(dood.role)]++;
+			}
+			avgScore = score / roster.Count;
 		}
-		for(int i=UnityEngine.Random.Range (2,4); i>0; i--){
-			Dood dood = UnitBuilder.getDoodByRandom(this);
-			roster.Add(dood);
-			score+=dood.equipLevel;
-			roleCount[UnitBuilder.roles.IndexOf(dood.role)]++;
-		}
-		avgScore = score / roster.Count;
-		outputDebug();
+		//outputDebug();
 	}
 
 	public void outputDebug(){
 		Debug.Log (name+"("+roster.Count+") Score: "+score+" Avg: "+avgScore);
 	}
 	
-	private void recalcStats(){
+	public void recalcStats(){
 		Array.Clear(roleCount, 0, roleCount.Length);
 		score = 0;
 		foreach (Dood dood in roster){
@@ -95,8 +114,9 @@ public class Clan{
 
 	public void rosterRemove(Dood dood){
 		roster.Remove (dood);
+		// TODO: Remove when Count == 1. Figure out where the last guy decides to go...
 		if(roster.Count == 0){
-			Debug.Log (name+" has disbanded!");
+			//Debug.Log (name+" has disbanded!");
 			RelationsTracker.activeClans.Remove(this);
 		} else {
 			recalcStats();
@@ -144,7 +164,7 @@ public class Dood{
 		this.id = id;
 		this.clan = clan;
 		equipLevel = (id%10)+11;
-		personality = ((id%10)%5)%4; // 0 is normal, 1 is stoic, 2 is aggro, 3 is cutesy
+		personality = (id%5)%4; // 0 is normal, 1 is stoic, 2 is aggro, 3 is cutesy
 		gender = (id%3)%2; // 0 is male, 1 is female
 		role = UnitBuilder.roles[id%UnitBuilder.roles.Count];
 		name = UnitBuilder.names[id%UnitBuilder.names.Length];
@@ -155,6 +175,8 @@ public class Dood{
 		RelationsTracker.activeDoods.Add (this);
 		//outputDebug();
 	}
+
+	// TODO: setHappy function. Ensure it keeps in range of [0,1] and refactor old code to use new function.
 
 	public void setFriendship(Dood other, float score){
 		if(score <= 0f) return; if(score > 1f) score = 1f;
@@ -171,13 +193,15 @@ public class Dood{
 
 	public void swapClans(Clan newClan){
 		// Update both clan rosters
+		// TODO: Friendships should be updated based on this move...
 		clan.rosterRemove(this);
 		newClan.rosterAdd(this);
+
 		// Do a notification.
-		Debug.Log (name+"("+role+") has left "+clan.name+" for "+newClan.name+".");
-		// Update own clan
+		//Debug.Log (name+"("+role+") has left "+clan.name+" for "+newClan.name+".");
+
+		// Update clan reference and be happy about it!
 		clan = newClan;
-		// Be happy about it!
 		happy += 0.3f;
 		if(happy > 1f) happy = 1f;
 	}

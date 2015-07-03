@@ -16,8 +16,13 @@ public class RelationsTracker : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(counter > 5f){
-			recruitment();
+		if(counter > 3f){
+			wandering();
+			// TODO: Add clan recruitment if they're short on a role.
+			if(activeClans.Count < activeDoods.Count / 10f){
+				forkLargestClan();
+				outputClanSummary();
+			}
 		} else {
 			counter += Time.deltaTime;
 		}
@@ -37,21 +42,36 @@ public class RelationsTracker : MonoBehaviour {
 		}
 	}
 
-	private void recruitment(){
+	private void wandering(){
 		bool rosterChanged = false;
 		foreach (Dood dood in activeDoods){
 			// Stay put if sufficiently happy.
-			if(dood.happy > 0.5f) continue;
+			if(dood.happy > 0.7f) continue;
 			
 			// Assess perception towards each clan.
 			Dictionary<Clan, float> draw = new Dictionary<Clan, float> ();
 			foreach (Clan clan in activeClans){ draw.Add(clan, 0f); }
-			
+
+			int[] friendsInClanCnt = new int[activeClans.Count];
+
 			draw[dood.clan]+=dood.happy;
+			friendsInClanCnt[activeClans.IndexOf(dood.clan)]++;
+
 			foreach (Dood friend in dood.friendship.Keys){
 				draw[friend.clan]+=(friend.happy*dood.friendship[friend]);
+				friendsInClanCnt[activeClans.IndexOf(friend.clan)]++;
 			}
-			
+
+			foreach (Clan clan in activeClans){
+				draw[clan] /= friendsInClanCnt[activeClans.IndexOf(clan)]; // Make it an average draw.
+				float gearLust = (1f * clan.avgScore) / dood.equipLevel;
+				if(draw[clan] < 1f){
+					draw[clan] = 1f * gearLust;
+				} else {
+					draw[clan] *= gearLust;
+				}
+			}		
+
 			// Apply to more desirable clans.
 			foreach(KeyValuePair<Clan, float> pair in draw.OrderByDescending(key => key.Value)){
 				if(pair.Key == dood.clan) break; // Don't leave for anything beneath the current clan.
@@ -61,15 +81,43 @@ public class RelationsTracker : MonoBehaviour {
 					break;
 				} else {
 					dood.happy -= 0.01f;
+					// TODO: They should probably grow more distant from the friends they can't join.
 					// Loop and keep applying until accepted to a better clan.
-					Debug.Log (dood.name+"("+dood.role+") rejected by "+pair.Key.name);
+					//Debug.Log (dood.name+"("+dood.role+") rejected by "+pair.Key.name);
 				}
 			}
 		}
 		if(rosterChanged){
-			foreach (Clan clan in activeClans){
-				clan.outputDebug();
+			outputClanSummary();
+		}
+	}
+
+	private void outputClanSummary(){
+		foreach (Clan clan in activeClans){
+			clan.outputDebug();
+		}
+		Debug.Log ("++++++++++++++++++");
+	}
+
+	// TODO: This new clan should probably become friends if they all left together...
+	private void forkLargestClan(){
+		Clan target = activeClans[0];
+		foreach(Clan clan in activeClans){
+			if(clan.roster.Count > target.roster.Count){
+				target = clan;
 			}
+		}
+
+		int numToLeave = target.roster.Count / 5;
+
+		Dood[] leaving =   (from d in target.roster
+		                  	orderby d.happy ascending
+		                   	select d).Take(numToLeave).ToArray();
+		UnitBuilder.createNewClan(leaving);
+
+		foreach (Dood dood in target.roster){
+			dood.happy -= 0.1f; // They're sad about the split. :(
+			if(dood.happy < 0f) dood.happy = 0f;
 		}
 	}
 
@@ -78,12 +126,16 @@ public class RelationsTracker : MonoBehaviour {
 			foreach(Dood dood in activeClans[position].roster){
 				if(UnityEngine.Random.value > 0.3f){
 					dood.happy+= 0.2f;
+					// TODO: This should be capped... definitely make sure to do so when encounters are added.
+					dood.equipLevel++;
 				} else {
 					dood.happy+= 0.05f;
 				}
 				if(dood.happy > 1f){ dood.happy = 1f; }
 			}
+			activeClans[position].recalcStats();
 		}
+
 	}
 
 	public void debugWipe(int position){
@@ -92,6 +144,7 @@ public class RelationsTracker : MonoBehaviour {
 				dood.happy-= 0.1f;
 				if(dood.happy < 0f){ dood.happy = 0f; }
 			}
+			activeClans[position].recalcStats();
 		}
 	}
 }
