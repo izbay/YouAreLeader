@@ -125,9 +125,8 @@ public class RelationsTracker : MonoBehaviour {
 		if(position < activeClans.Count){
 			foreach(Dood dood in activeClans[position].roster){
 				if(UnityEngine.Random.value > 0.3f){
-					dood.happy+= 0.2f;
-					// TODO: This should be capped... definitely make sure to do so when encounters are added.
-					dood.equipLevel++;
+					// This is debug crap. Get rid of it later~!
+					dood.Equip(new Lewt("test",30));
 				} else {
 					dood.happy+= 0.05f;
 				}

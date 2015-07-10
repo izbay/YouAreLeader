@@ -10,8 +10,13 @@ public class UnitBuilder : MonoBehaviour {
 	// TODO: Procedural guild crests based on ID? That'd be AWESOME.
 	public static string[] clans = {"Acts of the Demonic","Affliction of the Right","Angelic Shadow","Angels of the Land","Anguish of Heroes","Anguish of Promises","Aqua Hawks","Aqua Wolves","Aquadeath","Arcane Sacrament","Army of the Corrupted","Army of the Shield","Aspiring Chaos","Atonement of the Serene","Attack of Disease","Avengers of the Vigorous","Bandits of the Heroic","Bannershapers","Battleblades","Bellowdawn","Blackhammers","Blessing of the Shadows","Blood of the Vulture","Blood Rage","Blue Assailant","Boon of the Mighty","Bouldercrawlers","Boulderguard","Brave Knights","Brightblades","Burningwell","Civilians of the Loyal","Civilians of the World","Companions of the Putrid","Concealed Executors","Contract of Desire","Contract of the Infernal","Corruption of the Sick","Crushers of the Joyous","Cry of the Stag","Cunninglaws","Curse of the Extinct","Cutlass Champions","Damnation of Faith","Dashing Rats","Defiant Ancients","Delicate Genesis","Demolition Vikings","Departed End","Desire of the Fearless","Dishonest Nightmare","Dishonest Veterans","Dispensable Supremacy","Doomlaws","Emerald Apocalypse","Enemies of the Sincere","Eternal Assault","Eternal Paradox","Ethereal Assassins","Fallencrawlers","Fallensmiths","Famous Gang","Fellight","Feltalons","Fight of the Crow","Fighters of the Deluded","Fighters of the Sacred","Firetips","Flames of the Obscene","Forgesong","Forsaken Supremacy","Forsakenmanes","Funny Vultures","Furious Predators","Golden Intent","Goldendeath","Grace of the Universe","Gray Oath","Grieve of the Talon","Grim Gunslingers","Grim Illusions","Guards of the Jaguar","Hallowbeards","Hammers of Loyalty","Harmonious Plague","Harvesters of the Owl","Hell Rats","Hellcrushers","Hellflayers","Hellforce","Hellshields","Honest Death","Host of the Valiant","Humble Assassins","Humble Squad","Hummingswords","Hummingwell","Ill Hooligans","Ill Shadows","Immoral Vigorous","Independent Dynasty","Infernal Maggots","Ironcrawlers","Ivoryhammers","Jumpy Butchers","Large Vitality","Last of the Sacred","Legion of the Bear","Lightningbane","Magicbrawlers","Magicscars","Memories of Forests","Messengers of the Deserted","Metalfists","Misery of the Raven","Misery of the Sophisticated","Misery of the Woods","Monsters of the Seduced","Mystery of the Living","Mystical Punished","Nameless Warfare","Nefarious Assault","Nefarious Vengeance","Nightstriders","Oath of the Mysterious","Omega Ashes","Omega Vikings","Order of the Boar","Outlaws of the Dove","Pain of the Fallen","Passion of the Devoted","Patience of the Fierce","Peace of Fury","Perished Gunslingers","Poison Dragons","Poison Oath","Power Harvesters","Profane Punished","Punishment of Devotion","Punishment of the Cheeky","Pursuit of the Discarded","Rainshapers","Rangers of the Jungle","Ravendawn","Raventalons","Rebels of the Tame","Redguard","Refugees of the Ram","Relics of the Cougar","Retribution of the Crow","Revenant Primeval","Riddles of the Ended","Rise of the Talon","Roaring Enemy","Roaring Privilege","Robust Fall","Robust Shadow","Rogue Domination","Rumours of the Spider","Sacrifice of Shadows","Scouts of the Discarded","Screech of Darkness","Searing Harvesters","Sedated Supremacy","Shades of the Valiant","Shame of the Moon","Sightless Vanguards","Silence of the Boar","Society of Serenity","Society of the Hawk","Solarscars","Solarwell","Steelcrawlers","Stewards from the People","Stewards of the Lost Age","Stoneflags","Stonehammers","Storm of the Stars","Swiftflayers","Tasty Titans","Thundercrawlers","Tradition of Forests","Tremblestriders","Twin Eagles","Unknown Veterans","Valiant Rebels","Vanquished Gangsters","Vendetta from the Woods","Venom of Fury","Weak Vengeance","White Hawks","Whiteflags","Whitesong","Widows of the Strong","Wind Lust","Windcloaks","Workers of Virtue","Wraiths of the Vigorous","Wrecking Hawks","Wrong Veterans"};
 
-	// TODO: Create a role object rather than using a string. Abilities will go there.
-	public static List<string> roles = new List<string>() {"Valiant Palisade","Dawn Ritualist","Zephyr Minstrel","Ruin Bringer","Crescent Stalker"};
+	public static List<Role> roles = new List<Role>() {
+		new Role("Valiant Palisade"),
+		new Role("Dawn Ritualist"),
+		new Role("Zephyr Minstrel"),
+		new Role("Ruin Bringer"),
+		new Role("Crescent Stalker")
+	};
 
 	public static List<int> openIDs = new List<int>();
 	public static List<int> openClans = new List<int>();
@@ -153,10 +158,11 @@ public class Clan{
 	}
 }
 
-public class Dood{
+public class Dood : Combatant{
 	public Clan clan;
+	public Role role;
 	public int id, equipLevel, personality, gender;
-	public string role, name;
+	public string name;
 	public float happy, smart, brave;
 	public Dictionary<Dood, float> friendship = new Dictionary<Dood, float>();
 
@@ -206,7 +212,36 @@ public class Dood{
 		if(happy > 1f) happy = 1f;
 	}
 
-	public void outputDebug(){
-		Debug.Log (name+"-"+role+"("+equipLevel+")");
+	public bool canEquip(Lewt lewt){
+		return (lewt.roles.Contains(role) && lewt.level > equipLevel);
 	}
+
+	public void Equip(Lewt lewt){
+		if(!canEquip (lewt)) return;
+		int gear = lewt.level;
+		int upgrade = Mathf.CeilToInt((Mathf.Pow((float)equipLevel-gear,2f))/(float)((gear*gear)/10f));
+		happy += upgrade / 2f;
+		if(happy > 1f) happy = 1f;
+		//Debug.Log(equipLevel+"+"+upgrade+"="+(equipLevel+upgrade));
+		equipLevel += upgrade;
+	}
+
+	public void outputDebug(){
+		Debug.Log (name+"-"+role.name+"("+equipLevel+")");
+	}
+}
+
+public class Role{
+	public String name;
+
+	public Role(String name){
+		this.name = name;
+	}
+}
+
+public class Combatant{
+	float maxHealth;
+	float currHealth;
+	float damage;
+	float armor;
 }
