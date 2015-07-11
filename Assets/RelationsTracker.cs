@@ -80,7 +80,7 @@ public class RelationsTracker : MonoBehaviour {
 					dood.swapClans(pair.Key); // You're in! Time to gquit!
 					break;
 				} else {
-					dood.happy -= 0.01f;
+					dood.modifyHappy (-0.1f);
 					// TODO: They should probably grow more distant from the friends they can't join.
 					// Loop and keep applying until accepted to a better clan.
 					//Debug.Log (dood.name+"("+dood.role+") rejected by "+pair.Key.name);
@@ -116,8 +116,7 @@ public class RelationsTracker : MonoBehaviour {
 		UnitBuilder.createNewClan(leaving);
 
 		foreach (Dood dood in target.roster){
-			dood.happy -= 0.1f; // They're sad about the split. :(
-			if(dood.happy < 0f) dood.happy = 0f;
+			dood.modifyHappy(-0.1f); // They're sad about the split. :(
 		}
 	}
 
@@ -128,9 +127,8 @@ public class RelationsTracker : MonoBehaviour {
 					// This is debug crap. Get rid of it later~!
 					dood.Equip(new Lewt("test",30));
 				} else {
-					dood.happy+= 0.05f;
+					dood.modifyHappy (0.05f);
 				}
-				if(dood.happy > 1f){ dood.happy = 1f; }
 			}
 			activeClans[position].recalcStats();
 		}
@@ -140,8 +138,7 @@ public class RelationsTracker : MonoBehaviour {
 	public void debugWipe(int position){
 		if(position < activeClans.Count){
 			foreach(Dood dood in activeClans[position].roster){
-				dood.happy-= 0.1f;
-				if(dood.happy < 0f){ dood.happy = 0f; }
+				dood.modifyHappy (-0.1f);
 			}
 			activeClans[position].recalcStats();
 		}

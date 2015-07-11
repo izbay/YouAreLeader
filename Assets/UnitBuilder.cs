@@ -67,7 +67,7 @@ public class UnitBuilder : MonoBehaviour {
 		//Debug.Log("New Clan: "+newClan.name+" has been founded!");
 		foreach (Dood dood in doods){
 			dood.swapClans (newClan);
-			dood.happy += 0.2f; // Even better than joining an existing guild!
+			dood.modifyHappy (0.2f); // Even better than joining an existing clan!
 		}
 		newClan.recalcStats();
 		RelationsTracker.activeClans.Add(newClan);
@@ -182,7 +182,11 @@ public class Dood : Combatant{
 		//outputDebug();
 	}
 
-	// TODO: setHappy function. Ensure it keeps in range of [0,1] and refactor old code to use new function.
+	public void modifyHappy(float amount){
+		happy += amount * (1 - Mathf.Sin (1.58f - 6.25f * happy)) / 2;
+		if (happy < 0) happy = 0;
+		if (happy > 1) happy = 1;
+	}
 
 	public void setFriendship(Dood other, float score){
 		if(score <= 0f) return; if(score > 1f) score = 1f;
